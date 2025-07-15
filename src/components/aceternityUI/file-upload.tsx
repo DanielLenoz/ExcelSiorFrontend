@@ -56,7 +56,7 @@ export const FileUpload = ({
       <motion.div
         onClick={handleClick}
         whileHover="animate"
-        className="group/file relative block w-full cursor-pointer overflow-hidden rounded-lg border-2 border-purple-500 p-10"
+        className="group/file border-indigo-500/75r-2 relative block w-full cursor-pointer overflow-hidden rounded-lg border border-indigo-500 p-10"
       >
         <input
           ref={fileInputRef}
@@ -69,10 +69,10 @@ export const FileUpload = ({
           <GridPattern />
         </div> */}
         <div className="flex flex-col items-center justify-center">
-          <p className="relative z-20 font-sans text-base font-bold text-neutral-700">
+          <p className="relative z-20 font-mono text-base font-bold text-neutral-700">
             Upload file Sube tu archivo de Excel
           </p>
-          <p className="relative z-20 mt-2 font-sans text-base font-normal text-neutral-500">
+          <p className="relative z-20 mt-2 font-mono text-base font-normal text-neutral-500">
             un trabajo colavorativo de D & Y
           </p>
           <div className="relative mx-auto mt-10 w-full max-w-xl">
@@ -158,7 +158,7 @@ export const FileUpload = ({
             {!files.length && (
               <motion.div
                 variants={secondaryVariant}
-                className="absolute inset-0 z-30 mx-auto mt-4 flex h-32 w-full max-w-[8rem] items-center justify-center rounded-md border border-dashed border-sky-400 bg-transparent opacity-0"
+                className="absolute inset-0 z-30 mx-auto mt-4 flex h-32 w-full max-w-[8rem] items-center justify-center rounded-md border border-dashed border-indigo-500 bg-transparent opacity-0"
               ></motion.div>
             )}
           </div>

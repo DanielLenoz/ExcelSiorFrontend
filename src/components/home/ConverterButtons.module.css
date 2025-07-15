@@ -1,0 +1,175 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.toggleButton {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.toggleButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.panelMenu {
+  width: 100%;
+  max-width: 320px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.panelMenu :global(.p-panelmenu-panel) {
+  border: none;
+  margin-bottom: 0;
+}
+
+.panelMenu :global(.p-panelmenu-header) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 16px 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.panelMenu :global(.p-panelmenu-header:hover) {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+  transform: translateX(4px);
+}
+
+.panelMenu :global(.p-panelmenu-header-link) {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.panelMenu :global(.p-panelmenu-icon) {
+  color: white;
+  font-size: 1.2em;
+}
+
+.panelMenu :global(.p-panelmenu-toggle-icon) {
+  color: white;
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+.panelMenu :global(.p-panelmenu-header.p-highlight .p-panelmenu-toggle-icon) {
+  transform: rotate(90deg);
+}
+
+.panelMenu :global(.p-panelmenu-content) {
+  background: #f8f9fa;
+  border: none;
+  padding: 0;
+  animation: slideDown 0.3s ease-out;
+}
+
+.panelMenu :global(.p-menuitem) {
+  border-bottom: 1px solid #e9ecef;
+}
+
+.panelMenu :global(.p-menuitem:last-child) {
+  border-bottom: none;
+}
+
+.panelMenu :global(.p-menuitem-link) {
+  padding: 14px 20px;
+  color: #495057;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.panelMenu :global(.p-menuitem-link:hover) {
+  background: linear-gradient(90deg, #e3f2fd 0%, #f3e5f5 100%);
+  color: #1976d2;
+  transform: translateX(8px);
+}
+
+.panelMenu :global(.p-menuitem-link:before) {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.panelMenu :global(.p-menuitem-link:hover:before) {
+  transform: scaleY(1);
+}
+
+.panelMenu :global(.p-menuitem-icon) {
+  color: #6c757d;
+  font-size: 1.1em;
+}
+
+.panelMenu :global(.p-menuitem-text) {
+  font-weight: 500;
+  font-size: 0.95em;
+}
+
+.panelMenu :global(.p-panelmenu-content .p-panelmenu-content) {
+  background: #ffffff;
+  border-left: 3px solid #116dc9;
+  margin-left: 20px;
+}
+
+.panelMenu :global(.p-panelmenu-content .p-panelmenu-content .p-menuitem-link) {
+  padding: 12px 20px;
+  font-size: 0.9em;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .panelMenu {
+    max-width: 100%;
+  }
+
+  .panelMenu :global(.p-panelmenu-header-link) {
+    font-size: 0.9em;
+  }
+
+  .panelMenu :global(.p-menuitem-link) {
+    padding: 12px 16px;
+  }
+}
