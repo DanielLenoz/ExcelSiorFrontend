@@ -1,9 +1,13 @@
+import { saveAs } from "file-saver";
 import { useState } from "react";
 import { Button } from "primereact/button";
 import { PanelMenu } from "primereact/panelmenu";
 import styles from "./ConverterButtons.module.css";
 
 export default function Controlled() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
   const items = [
     {
       key: "0",
@@ -44,6 +48,34 @@ export default function Controlled() {
         {
           key: "1_1",
           label: "Unir CSV",
+          command: async () => {
+            setLoading(true);
+            setError("");
+            try {
+              const files = window.uploadedFiles || [];
+              if (!files.length) {
+                throw new Error("No hay archivos para unir");
+              }
+              const formData = new FormData();
+              files.forEach((file) => {
+                formData.append("files", file);
+              });
+              const response = await fetch("http://localhost:8000/unir-csv", {
+                method: "POST",
+                body: formData,
+              });
+              if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || "Error al unir CSV");
+              }
+              const blob = await response.blob();
+              saveAs(blob, "consolidado_coljuegos_pqr_2021.csv");
+            } catch (err: any) {
+              setError(err.message || "Error inesperado");
+            } finally {
+              setLoading(false);
+            }
+          },
         },
       ],
     },
@@ -141,11 +173,15 @@ export default function Controlled() {
         onClick={toggleAll}
         className={`${styles.toggleButton} font-mono text-xl`}
       />
+      {loading && (
+        <div style={{ color: "blue" }}>Procesando consolidado...</div>
+      )}
+      {error && <div style={{ color: "red" }}>Error: {error}</div>}
       <PanelMenu
         model={items}
         expandedKeys={expandedKeys}
         onExpandedKeysChange={setExpandedKeys}
-        className={`${styles.panelMenu} font-mono text-lg` }
+        className={`${styles.panelMenu} font-mono text-lg`}
         multiple
       />
     </div>
